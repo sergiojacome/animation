@@ -11,36 +11,102 @@
 </head>
 
 <body>
-    <div style="display: none;">
-        <div id="surface_mount_beads">
-            <img src="images/surface_mount_beads.jpg" alt="Surface Mount Beads">
+    <div class="hidden">
+        <!-- Start content for Surface Mount Beads -->
+        <div id="surface_mount_beads" class="w-40">
+            <img src="images/surface_mount_beads.jpg" alt="Surface Mount Beads" class="object-contain">
             <div class="font-bold text-center">Surface Mount Beads</div>
         </div>
-        <div id="two">
-            <strong>Content for `two`</strong>
+        <!-- End content for Surface Mount Beads -->
+        <!-- Start content for Split Supression Cores -->
+        <div id="split_supression_cores" class="w-40">
+            <img src="images/split_supression_cores.jpg" alt="Split Supression Cores" class="object-contain">
+            <div class="font-bold text-center">Split Supression Cores</div>
         </div>
-        <div id="three">
-            <strong>Content for `three`</strong>
+        <!-- End content for Split Supression Cores -->
+        <!-- Start content for Wound Rods -->
+        <div id="wound_rods" class="w-40">
+            <img src="images/wound_rods.png" alt="Wound Rods" class="object-contain">
+            <div class="font-bold text-center">Wound Rods</div>
         </div>
+        <!-- End content for Wound Rods -->
+        <!-- Start content for Connector Plates -->
+        <div id="connector_plates" class="w-40">
+            <img src="images/connector_plates.png" alt="Connector Plates" class="object-contain">
+            <div class="font-bold text-center">Connector Plates</div>
+        </div>
+        <!-- End content for Connector Plates Cores -->
+        <!-- Start content for Large Planar Cores -->
+        <div id="large_planar_cores" class="w-40">
+            <img src="images/large_planar_cores.png" alt="Large Planar Cores" class="object-contain">
+            <div class="font-bold text-center">Large Planar Cores</div>
+        </div>
+        <!-- End content for Large Planar Cores -->
     </div>
     <div class="flex w-full h-full justify-center items-center relative">
         <div class="w-1/2">
-            <div class="absolute border-b-2 border-black surface_mount_beads-line"
-                style="margin-left: 7%; margin-top: 17.5%;"></div>
-            <div
-                class="rounded-full h-4 w-4 flex items-center justify-center bg-blue-600 absolute surface_mount_beads-pointer">
+            <!-- Surface Mount Pointer -->
+            <div class="blue-circle surface_mount_beads-pointer"></div>
+            <div data-template="surface_mount_beads" class="blue-circle puff-out-center surface_mount_beads-pointer">
             </div>
-            <div
-                data-template="surface_mount_beads"
-                class="rounded-full h-4 w-4 flex items-center justify-center bg-blue-600 absolute puff-out-center cursor-pointer surface_mount_beads-pointer">
+            <!-- End of Surface Mount Pointer -->
+            <!-- Split Supression Cores Pointer -->
+            <div class="blue-circle split_supression_cores-pointer"></div>
+            <div data-template="split_supression_cores" class="blue-circle puff-out-center split_supression_cores-pointer">
             </div>
-            <img src="images/car.jpg" alt="Car" class="mb-24">
+            <!-- End of Split Supression Cores Pointer -->
+            <!-- Split Wound Rods Pointer -->
+            <div class="blue-circle wound_rods-pointer"></div>
+            <div data-template="wound_rods" class="blue-circle puff-out-center wound_rods-pointer">
+            </div>
+            <!-- End of Wound Rods Pointer -->
+            <!-- Connector Plates Pointer -->
+            <div class="blue-circle connector_plates-pointer"></div>
+            <div data-template="connector_plates" class="blue-circle puff-out-center connector_plates-pointer">
+            </div>
+            <!-- End of Connector Plates Pointer -->
+            <!-- Connector Large Planar Cores -->
+            <div class="blue-circle large_planar_cores-pointer"></div>
+            <div data-template="large_planar_cores" class="blue-circle puff-out-center large_planar_cores-pointer">
+            </div>
+            <!-- End of Connector Large Planar Cores -->
+            <img src="images/car.jpg" alt="Car">
         </div>
     </div>
     <style>
+        .blue-circle {
+            width: 1rem;
+            height: 1rem;
+            position: absolute;
+            display: flex;
+            cursor: pointer;
+            border-radius: 100%;
+            background-color: rgba(49, 130, 206);
+        }
+
         .surface_mount_beads-pointer {
             margin-top: 17%;
             margin-left: 17%;
+        }
+
+        .split_supression_cores-pointer {
+            margin-top: 20%;
+            margin-left: 43.3%;
+        }
+
+        .wound_rods-pointer {
+            margin-top: 17.5%;
+            margin-left: 7.5%;
+        }
+
+        .connector_plates-pointer {
+            margin-top: 19.5%;
+            margin-left: 22.5%;
+        }
+
+        .large_planar_cores-pointer {
+            margin-top: 29.3%;
+            margin-left: 37%;
         }
 
         .puff-out-center {
@@ -73,7 +139,9 @@
             allowHTML: true,
             theme: 'light-border',
             animation: 'scale-extreme',
-            trigger: 'click'
+            trigger: 'click',
+            //placement: 'left',
+            maxWidth: 250
         });
     </script>
 </body>
