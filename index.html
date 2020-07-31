@@ -141,13 +141,13 @@
         .puff-out-center {
             animation: puff-out-center 1s cubic-bezier(.165, .84, .44, 1.000) infinite both
         }
-        
+
         .tippy-content {
             padding: 0 !important;
         }
 
         .tippy-box>.tippy-arrow::before {
-            transform: scale(1.5);
+            transform: scale(1);
         }
 
         @keyframes puff-out-center {
@@ -166,18 +166,18 @@
 
         @media all and (max-width: 767px) {
             [data-tippy-root] {
-                transform: translateY(100%) translateX(10px) !important;
+                transform: translateY(100%) translateX(12.5px) !important;
             }
 
             .tippy-box {
                 width: calc(100vw -20px) !important;
-                max-width: calc(100vw -10px) !important;
+                max-width: 99vw !important;
             }
         }
     </style>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light.css" />
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light-border.css" />
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/svg-arrow.css" />
     <script>
         tippy('[data-template]', {
@@ -187,7 +187,7 @@
                 return template.innerHTML;
             },
             allowHTML: true,
-            theme: 'light',
+            theme: 'light-border',
             //animation: 'scale-extreme',
             trigger: 'click'
         });
