@@ -127,6 +127,9 @@
         }
 
         @media all and (max-width: 768px) {
+            [data-tippy-root] {
+                transform: translateY(100%) translateX(5px) !important;
+            }
             .tippy-box {
                 width: calc(100vw -10px) !important;
                 max-width: 100vw !important;
@@ -147,7 +150,7 @@
             allowHTML: true,
             theme: 'light-border',
             //animation: 'scale-extreme',
-            trigger: 'click',
+            trigger: 'click'
         });
     </script>
 </body>
