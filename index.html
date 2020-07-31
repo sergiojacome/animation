@@ -50,7 +50,8 @@
             <!-- End of Surface Mount Pointer -->
             <!-- Split Supression Cores Pointer -->
             <div class="blue-circle split_supression_cores-pointer"></div>
-            <div data-template="split_supression_cores" class="blue-circle puff-out-center split_supression_cores-pointer">
+            <div data-template="split_supression_cores"
+                class="blue-circle puff-out-center split_supression_cores-pointer">
             </div>
             <!-- End of Split Supression Cores Pointer -->
             <!-- Split Wound Rods Pointer -->
@@ -124,6 +125,13 @@
                 opacity: 0
             }
         }
+
+        @media all and (max-width: 768px) {
+            .tippy-box {
+                width: calc(100vw -10px) !important;
+                max-width: 100vw !important;
+            }
+        }
     </style>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
@@ -140,7 +148,6 @@
             theme: 'light-border',
             //animation: 'scale-extreme',
             trigger: 'click',
-            //maxWidth: 250
         });
     </script>
 </body>
