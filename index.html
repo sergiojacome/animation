@@ -6,8 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light-border.css" />
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-extreme.css" />
 </head>
 
 <body>
@@ -129,6 +127,8 @@
     </style>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light-border.css" />
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-extreme.css" />
     <script>
         tippy('[data-template]', {
             content(reference) {
@@ -138,10 +138,9 @@
             },
             allowHTML: true,
             theme: 'light-border',
-            animation: 'scale-extreme',
+            //animation: 'scale-extreme',
             trigger: 'click',
-            //placement: 'left',
-            maxWidth: 250
+            //maxWidth: 250
         });
     </script>
 </body>
