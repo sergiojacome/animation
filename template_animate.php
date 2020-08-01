@@ -116,6 +116,7 @@ while ( have_posts() ) : the_post();
         }
 
         .detail-map-container img {
+            width:100%;
             max-width: 100vw;
             height:auto;
         }
