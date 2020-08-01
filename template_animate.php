@@ -257,7 +257,7 @@ while ( have_posts() ) : the_post();
                         },
                         {
                             name: 'Medical',
-                            img: 'https://www.beltmannlogistics.com/wp-content/uploads/2019/01/medical-equipment-transportation.png',
+                            img: 'https://eu.medical.canon/wp-content/uploads/sites/2/2016/02/Canon-Infinix-4D-CT.png',
                             alt: 'Medical',
                             markers: [
                                 {
@@ -301,7 +301,7 @@ while ( have_posts() ) : the_post();
                         },
                         {
                             name: 'Other',
-                            img: 'https://txtav.com/-/media/textron-aviation/images/news-events/news-releases/2019/2019_09/citation-longitude-image-2_header.ashx?h=580&w=870&la=en&hash=BB9F91386EA2A8DB643F177CD570DA6536FFE363',
+                            img: 'https://www.californiahvip.org/wp-content/uploads/2020/05/MY20-Lightning-Systems-FE4-E450-ZE-200430.png',
                             alt: 'Other',
                             markers: [
                                 {
