@@ -212,12 +212,12 @@ while ( have_posts() ) : the_post();
                     slides: [
                         {
                             name: 'Automotive',
-                            img: 'images/car.jpg',
+                            img: '<?php echo get_template_directory_uri(); ?>/images/details/car.jpg',
                             alt: 'Automotive',
                             markers: [
                                 {
                                     title: 'Surface Mount Beads',
-                                    img: 'images/surface_mount_beads.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/surface_mount_beads.jpg',
                                     top: '34%',
                                     left: '34%',
                                     lineHeight: '44.75%',
@@ -225,28 +225,28 @@ while ( have_posts() ) : the_post();
                                 },
                                 {
                                     title: 'Split Supression Cores',
-                                    img: 'images/split_supression_cores.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/split_supression_cores.jpg',
                                     top: '40%',
                                     left: '86.6%',
                                     lineHeight: '36%',
                                     url: 'http://bing.com'
                                 }, {
                                     title: 'Wound Rods',
-                                    img: 'images/wound_rods.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/wound_rods.jpg',
                                     top: '35%',
                                     left: '15%',
                                     lineHeight: '43%',
                                     url: 'http://google.com'
                                 }, {
                                     title: 'Connector Plates',
-                                    img: 'images/connector_plates.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/connector_plates.jpg',
                                     top: '39%',
                                     left: '45%',
                                     lineHeight: '37%',
                                     url: 'http://altavista.com'
                                 }, {
                                     title: 'Large Planar Cores',
-                                    img: 'images/large_planar_cores.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/large_planar_cores.jpg',
                                     top: '58.4%',
                                     left: '74%',
                                     lineHeight: '10%',
@@ -261,7 +261,7 @@ while ( have_posts() ) : the_post();
                             markers: [
                                 {
                                     title: 'Surface Mount Beads',
-                                    img: 'images/surface_mount_beads.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/surface_mount_beads.jpg',
                                     top: '34%',
                                     left: '34%',
                                     lineHeight: '44.75%',
@@ -269,28 +269,28 @@ while ( have_posts() ) : the_post();
                                 },
                                 {
                                     title: 'Split Supression Cores',
-                                    img: 'images/split_supression_cores.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/split_supression_cores.jpg',
                                     top: '40%',
                                     left: '86.6%',
                                     lineHeight: '36%',
                                     url: 'http://bing.com'
                                 }, {
                                     title: 'Wound Rods',
-                                    img: 'images/wound_rods.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/wound_rods.jpg',
                                     top: '35%',
                                     left: '15%',
                                     lineHeight: '43%',
                                     url: 'http://google.com'
                                 }, {
                                     title: 'Connector Plates',
-                                    img: 'images/connector_plates.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/connector_plates.jpg',
                                     top: '39%',
                                     left: '45%',
                                     lineHeight: '37%',
                                     url: 'http://altavista.com'
                                 }, {
                                     title: 'Large Planar Cores',
-                                    img: 'images/large_planar_cores.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/large_planar_cores.jpg',
                                     top: '58.4%',
                                     left: '74%',
                                     lineHeight: '10%',
@@ -305,7 +305,7 @@ while ( have_posts() ) : the_post();
                             markers: [
                                 {
                                     title: 'Surface Mount Beads',
-                                    img: 'images/surface_mount_beads.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/surface_mount_beads.jpg',
                                     top: '34%',
                                     left: '34%',
                                     lineHeight: '44.75%',
@@ -313,28 +313,28 @@ while ( have_posts() ) : the_post();
                                 },
                                 {
                                     title: 'Split Supression Cores',
-                                    img: 'images/split_supression_cores.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/split_supression_cores.jpg',
                                     top: '40%',
                                     left: '86.6%',
                                     lineHeight: '36%',
                                     url: 'http://bing.com'
                                 }, {
                                     title: 'Wound Rods',
-                                    img: 'images/wound_rods.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/wound_rods.jpg',
                                     top: '35%',
                                     left: '15%',
                                     lineHeight: '43%',
                                     url: 'http://google.com'
                                 }, {
                                     title: 'Connector Plates',
-                                    img: 'images/connector_plates.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/connector_plates.jpg',
                                     top: '39%',
                                     left: '45%',
                                     lineHeight: '37%',
                                     url: 'http://altavista.com'
                                 }, {
                                     title: 'Large Planar Cores',
-                                    img: 'images/large_planar_cores.jpg',
+                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/large_planar_cores.jpg',
                                     top: '58.4%',
                                     left: '74%',
                                     lineHeight: '10%',
