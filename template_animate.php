@@ -1,14 +1,56 @@
-<!DOCTYPE html>
-<html lang="en" class="nopad">
+<?php
+/**
+ * Template Name: Toroid Calculator
+ *
+ * @package WordPress
+ * @subpackage Twenty_Fourteen
+ * @since Twenty Fourteen 1.0
+ */
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+get_header(); ?>
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 
-<body class="nopad">
-    <div id="app">
+<?php
+while ( have_posts() ) : the_post();
+?>
+<div id="main-content" class="main-content">
+	<div class="wrapper">
+	<div class="wrapper_inner">
+		<style>
+			.page_faq_top { border-bottom:1px solid #ccc; }
+			.page_faq_top h2 { color:#005CB9; padding:20px 0; margin:0px; font-size:18px; font-weight:normal; }
+			.page_faq_top h2 span{ color:#999; font-size:14px; }
+			.page_faq_top h2 a{ color:#005CB9; font-size:14px; }
+			.faq_container_header { background:#EBECED; padding:20px; cursor:pointer; }
+			.faq_container {  }
+			.faq_container .faq_content_container { padding:20px 20px 20px 0px; }
+			.faq_container .faq_content_container:nth-child(even){ background: #EBECED; }
+			.faq_container .faq_content_container h2{ padding:10px 10px 10px 80px; font-size:14px; font-weight:normal; margin:10px 0;  background:url('<?php echo get_template_directory_uri(); ?>/images/faq_plus.png') no-repeat 25px center; cursor:pointer; }
+
+			.faq_container .faq_content_container:nth-child(even) h2{ background:url('<?php echo get_template_directory_uri(); ?>/images/faq_plus.png') no-repeat 25px center ; }
+			.faq_container .faq_content_container .faq_content { padding-top: 20px; margin-top:10px; border-top:1px solid #ccc; display:none; margin-left:80px; }
+
+			.wpapers_anotes_single_container { padding:20px; border-bottom:1px solid #ccc; margin-top:20px; }
+			.wpapers_anotes_single_container:first-child { border-top:1px solid #ccc; }
+			.wpapers_anotes_logo { display: table-cell; height: 100%; padding-right: 5%; vertical-align: top; width: 35%; }
+			.wpapers_anotes_logo img { width:100%; }
+			.wpapers_anotes_info { border-left: 1px solid #ccc; display: table-cell; padding-left: 5%; width: 60%; }
+			.dates_authors { font-weight:bold; font-size:14px; }
+			.wpapers_anotes_date { display:inline-block; margin-right:60px; }
+			.wpapers_anotes_author { display:inline-block; }
+			.wpapers_anotes_title { color:#005CB9; font-size:16px; padding:10px 0; }
+			.wpapers_anotes_content { font-size:12px; }
+			.wpapers_anotes_red_more { padding-top:10px; }
+			.wpapers_anotes_red_more a { background:#F1F1F1; padding: 10px 20px; font-size:14px; font-weight:bold; color:#000; border-radius:none; display:inline-block; }
+			.wpapers_anotes_content p { margin-bottom:10px;display:none; }
+
+			.wpapers_anotes_content p:first-child{display:inline-block;}
+			.wpapers_anotes_table_container { display:table; width:100%; }
+        </style>
+        <div class="page_faq_top">
+			<h2>Technical Tools &amp; References</h2>
+		</div>
+		<div id="app">
         <div class="tabs">
             <div class="tab" :class="(slide.name === selectedTab) ? 'selected' : ''" v-for="slide in slides" @click="selectTab(slide.name)">
                 {{slide.name}}
@@ -38,7 +80,9 @@
             </section>
         </section>
     </div>
-    <style>
+	</div>
+		<div style="clear:both;"></div>
+		<style>
         .nopad {
             padding: 0;
             margin: 0;
@@ -157,7 +201,7 @@
 
         @media all and (max-width: 767px) {}
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
     <script>
         var app = new Vue({
             el: '#app',
@@ -314,6 +358,19 @@
             }
         })
     </script>
-</body>
-
-</html>
+		</div>  
+			<br/>
+			<br/>
+	</div>
+</div>
+</div>
+ <script>
+ function scrolltoelemparent(obj){
+	 jQuery('html,body').animate({
+		scrollTop:  jQuery(obj).parent().parent().parent().offset().top-210
+	 });
+ }
+ </script>
+<?php
+endwhile;
+get_footer();
