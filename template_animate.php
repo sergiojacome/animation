@@ -113,12 +113,11 @@ while ( have_posts() ) : the_post();
         .detail-map-container {
             display: flex;
             position: relative;
+            flex-direction:column;
         }
 
         .detail-map-container img {
-            width:100%;
             max-width: 100vw;
-            height:auto;
         }
 
         .line {
