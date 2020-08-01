@@ -117,6 +117,7 @@ while ( have_posts() ) : the_post();
 
         .detail-map-container img {
             max-width: 100vw;
+            height:auto;
         }
 
         .line {
