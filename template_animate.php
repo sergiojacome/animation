@@ -25,9 +25,9 @@ while ( have_posts() ) : the_post();
 			.faq_container {  }
 			.faq_container .faq_content_container { padding:20px 20px 20px 0px; }
 			.faq_container .faq_content_container:nth-child(even){ background: #EBECED; }
-			.faq_container .faq_content_container h2{ padding:10px 10px 10px 80px; font-size:14px; font-weight:normal; margin:10px 0;  background:url('<?php echo get_template_directory_uri(); ?>/images/faq_plus.png') no-repeat 25px center; cursor:pointer; }
+			.faq_container .faq_content_container h2{ padding:10px 10px 10px 80px; font-size:14px; font-weight:normal; margin:10px 0;  background:url('<?php echo get_template_directory_uri(); ?>/<?php echo get_template_directory_uri(); ?>/images/details/faq_plus.png') no-repeat 25px center; cursor:pointer; }
 
-			.faq_container .faq_content_container:nth-child(even) h2{ background:url('<?php echo get_template_directory_uri(); ?>/images/faq_plus.png') no-repeat 25px center ; }
+			.faq_container .faq_content_container:nth-child(even) h2{ background:url('<?php echo get_template_directory_uri(); ?>/<?php echo get_template_directory_uri(); ?>/images/details/faq_plus.png') no-repeat 25px center ; }
 			.faq_container .faq_content_container .faq_content { padding-top: 20px; margin-top:10px; border-top:1px solid #ccc; display:none; margin-left:80px; }
 
 			.wpapers_anotes_single_container { padding:20px; border-bottom:1px solid #ccc; margin-top:20px; }
@@ -48,7 +48,7 @@ while ( have_posts() ) : the_post();
 			.wpapers_anotes_table_container { display:table; width:100%; }
         </style>
         <div class="page_faq_top">
-			<h2>Technical Tools &amp; References</h2>
+			<h2>Common Uses</h2>
 		</div>
 		<div id="app">
         <div class="tabs">
@@ -58,37 +58,36 @@ while ( have_posts() ) : the_post();
         </div>
         <div class="detail-map-container" v-for="slide in slides" v-if="selectedTab === slide.name">
             <section v-for="marker in slide.markers">
-                <div class="line" :style="{ marginTop: marker.top, marginLeft: marker.left, height: marker.lineHeight }"
-                    v-if="(selectedMarker !== marker.title) ? '' : 'hidden'">
-                </div>
                 <div class="blue-circle" :style="{ marginTop: marker.top, marginLeft: marker.left }"></div>
-                <div class="blue-circle puff-out-center" :style="{ marginTop: marker.top, marginLeft: marker.left }"
-                    @click="toggleMarker(marker.title)">
+                <div class="blue-circle puff-out-center" :style="{ marginTop: marker.top, marginLeft: marker.left }" :content="`
+                <div class='img-container'>
+                    <img src='${marker.img}' alt='${marker.title}'' class='object-contain'>
                 </div>
-            </section>
-            <img :src="slide.img" alt="slide.alt" @click="removeSelection()">
-        </div>
-        <section v-for="slide in slides">
-            <section v-for="marker in slide.markers">
-                <div class="details" v-if="(selectedMarker !== marker.title) ? '' : 'hidden'">
-                    <img :src="marker.img" :alt="marker.title">
-                    <div class="box">
-                        <div class="">{{marker.title}}</div>
-                        <div class=""><a :href="marker.url" class="btn">More</a></div>
+                <div class='bg-gray-200 flex items-center justify-between description'>
+                    <div class='font-bold text-center'>${marker.title}</div>
+                    <div>
+                        <a href='${marker.url}' class='btn'>More</a>
+                    </div>
+                </div>
+                `" v-tippy="{ allowHTML: true, arrow : true, theme : 'light-border', trigger: 'click', interactive : true, placement : 'bottom' }">
+                </div>
+                <div :id="marker.id" class="hidden">
+                    <img :src="marker.img" :alt="marker.title" class="object-contain">
+                    <div class="bg-gray-200 flex items-center justify-between description">
+                        <div class="font-bold text-center">{{marker.title}}</div>
+                        <div>
+                            <a :href="marker.url"
+                                class="bg-blue-500 font-semibold text-white px-8 py-2 rounded-lg">More</a>
+                        </div>
                     </div>
                 </div>
             </section>
-        </section>
+            <img :src="slide.img" alt="slide.alt" >
+        </div>
     </div>
 	</div>
 		<div style="clear:both;"></div>
 		<style>
-        .nopad {
-            padding: 0;
-            margin: 0;
-            font-family: sans-serif;
-        }
-
         .tabs {
             display: flex;
             justify-content: space-evenly;
@@ -98,12 +97,15 @@ while ( have_posts() ) : the_post();
             color: #666;
             text-transform: uppercase;
             text-align: center;
-            padding: 1rem .25rem;
+            padding: .5rem .25rem;
+            margin: .5rem auto;
+            cursor: pointer;
         }
 
         .tabs .tab.selected {
             color: rgba(49, 130, 206);
             font-weight: 800;
+            border-bottom: solid 4px rgba(49, 130, 206);
         }
 
         .hidden {
@@ -113,63 +115,12 @@ while ( have_posts() ) : the_post();
         .detail-map-container {
             display: flex;
             position: relative;
-            flex-direction:column;
-        }
-
-        .detail-map-container img {
-            max-width: 100vw;
-        }
-
-        .line {
-            position: absolute;
-            left: .45rem;
-            bottom: 0;
-            border-left: solid 2px #999;
-        }
-
-        .line::before {
-            display: block;
-            position: absolute;
-            content: '▲';
-            color: #999;
-            top: 0;
-            transform: translateX(-8.75px) translateY(-7px);
-        }
-
-        .details {
-            position: absolute;
-            background: white;
-            width: calc(100% - 2rem);
-            border-radius: 10px;
-            border: solid 1px #999;
-            margin: 0 1rem;
-            z-index: 20;
-            display: flex;
             flex-direction: column;
         }
 
-        .details img {
-            max-width: 99%;
-            margin: 1rem auto;
-        }
-
-        .details .box {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: rgba(237, 242, 247);
-            padding: 1rem;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            font-weight: 800;
-        }
-
-        .details .box .btn {
-            color: #fff;
-            background-color: rgba(49, 130, 206);
-            padding: .5rem 1.25rem;
-            text-decoration: none;
-            border-radius: 5px;
+        .detail-map-container img {
+            max-width: 100%;
+            object-fit: contain;
         }
 
         .blue-circle {
@@ -199,10 +150,61 @@ while ( have_posts() ) : the_post();
                 opacity: 0
             }
         }
+        .tippy-tooltip {
+            padding: 2px !important;
+            background-color: #edf2f7 !important;
+        }
+        .tippy-arrow {
+            transform: scale(1.5);
+        }
+        .tippy-popper[x-placement^=top] .tippy-arrow {
+           border-top-color: #edf2f7 !important;
+        }
+        .tippy-popper[x-placement^=bottom] .tippy-arrow {
+            border-bottom-color: #edf2f7 !important;
+        }
+        .tippy-tooltip img {
+            width: 100%;
+            object-fit: cover;
+        }
+        .img-container {
+            background-color: #fff;
+            padding: 1rem 0;
+        }
+        .flex {
+            display: flex;
+        }
+        .items-center {
+            align-items: center;
+        }
+        .justify-between {
+            justify-content: space-between;
+        }
+        .description {
+            padding: .75rem .5rem;
+            color: #333;
+            font-weight: 800;
+        }
+        .btn {
+            color: #fff;
+            background-color: rgba(49, 130, 206);
+            padding: .5rem 1.25rem;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        @media all and (max-width: 767px) {
+            .tippy-popper {
+                transform: translateY(600px) translateX(15px) !important;
+            }
 
-        @media all and (max-width: 767px) {}
+            .tippy-tooltip {
+                max-width: calc(100% - 30px) !important;
+            }
+        }
     </style>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-tippy@4/dist/vue-tippy.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-tippy@4/dist/vue-tippy.min.js"></script>
     <script>
         var app = new Vue({
             el: '#app',
@@ -218,40 +220,40 @@ while ( have_posts() ) : the_post();
                             markers: [
                                 {
                                     title: 'Surface Mount Beads',
+                                    id: 'surface_mount_beads',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/surface_mount_beads.jpg',
                                     top: '34%',
                                     left: '34%',
-                                    lineHeight: '44.75%',
-                                    url: 'http://yahoo.com'
+                                    url: '/'
                                 },
                                 {
                                     title: 'Split Supression Cores',
+                                    id: 'split_supression_cores',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/split_supression_cores.jpg',
                                     top: '40%',
                                     left: '86.6%',
-                                    lineHeight: '36%',
-                                    url: 'http://bing.com'
+                                    url: '/'
                                 }, {
                                     title: 'Wound Rods',
+                                    id: 'wound_rods',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/wound_rods.jpg',
                                     top: '35%',
                                     left: '15%',
-                                    lineHeight: '43%',
-                                    url: 'http://google.com'
+                                    url: '/'
                                 }, {
                                     title: 'Connector Plates',
+                                    id: 'connector_plates',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/connector_plates.jpg',
                                     top: '39%',
                                     left: '45%',
-                                    lineHeight: '37%',
-                                    url: 'http://altavista.com'
+                                    url: '/'
                                 }, {
                                     title: 'Large Planar Cores',
+                                    id: 'large_planar_cores',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/large_planar_cores.jpg',
                                     top: '58.4%',
                                     left: '74%',
-                                    lineHeight: '10%',
-                                    url: 'http://aol.com'
+                                    url: '/'
                                 },
                             ]
                         },
@@ -261,86 +263,26 @@ while ( have_posts() ) : the_post();
                             alt: 'Medical',
                             markers: [
                                 {
-                                    title: 'Surface Mount Beads',
+                                    title: 'Medical content',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/surface_mount_beads.jpg',
                                     top: '34%',
-                                    left: '34%',
-                                    lineHeight: '44.75%',
-                                    url: 'http://yahoo.com'
-                                },
-                                {
-                                    title: 'Split Supression Cores',
-                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/split_supression_cores.jpg',
-                                    top: '40%',
-                                    left: '86.6%',
-                                    lineHeight: '36%',
-                                    url: 'http://bing.com'
-                                }, {
-                                    title: 'Wound Rods',
-                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/wound_rods.jpg',
-                                    top: '35%',
-                                    left: '15%',
-                                    lineHeight: '43%',
-                                    url: 'http://google.com'
-                                }, {
-                                    title: 'Connector Plates',
-                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/connector_plates.jpg',
-                                    top: '39%',
                                     left: '45%',
-                                    lineHeight: '37%',
-                                    url: 'http://altavista.com'
-                                }, {
-                                    title: 'Large Planar Cores',
-                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/large_planar_cores.jpg',
-                                    top: '58.4%',
-                                    left: '74%',
-                                    lineHeight: '10%',
-                                    url: 'http://aol.com'
-                                },
+                                    url: '/'
+                                }
                             ]
                         },
                         {
-                            name: 'Other',
-                            img: 'https://www.californiahvip.org/wp-content/uploads/2020/05/MY20-Lightning-Systems-FE4-E450-ZE-200430.png',
-                            alt: 'Other',
+                            name: 'Agricultural',
+                            img: 'https://www.tennesseetractor.com/images/default-source/default-album/1023e_tractor.png',
+                            alt: 'Agricultural',
                             markers: [
                                 {
-                                    title: 'Surface Mount Beads',
+                                    title: 'Agricultural content',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/surface_mount_beads.jpg',
-                                    top: '34%',
-                                    left: '34%',
-                                    lineHeight: '44.75%',
-                                    url: 'http://yahoo.com'
-                                },
-                                {
-                                    title: 'Split Supression Cores',
-                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/split_supression_cores.jpg',
-                                    top: '40%',
-                                    left: '86.6%',
-                                    lineHeight: '36%',
-                                    url: 'http://bing.com'
-                                }, {
-                                    title: 'Wound Rods',
-                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/wound_rods.jpg',
-                                    top: '35%',
-                                    left: '15%',
-                                    lineHeight: '43%',
-                                    url: 'http://google.com'
-                                }, {
-                                    title: 'Connector Plates',
-                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/connector_plates.jpg',
-                                    top: '39%',
-                                    left: '45%',
-                                    lineHeight: '37%',
-                                    url: 'http://altavista.com'
-                                }, {
-                                    title: 'Large Planar Cores',
-                                    img: '<?php echo get_template_directory_uri(); ?>/images/details/large_planar_cores.jpg',
-                                    top: '58.4%',
-                                    left: '74%',
-                                    lineHeight: '10%',
-                                    url: 'http://aol.com'
-                                },
+                                    top: '23%',
+                                    left: '47%',
+                                    url: '/'
+                                }
                             ]
                         }
                     ]

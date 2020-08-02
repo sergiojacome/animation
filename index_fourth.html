@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="nopad">
 
 <head>
     <meta charset="UTF-8">
@@ -7,101 +7,128 @@
     <title>Document</title>
 </head>
 
-<body>
-    <div class="hidden">
-        <!-- Start content for Surface Mount Beads -->
-        <div id="surface_mount_beads" class="w-40">
-            <img src="images/surface_mount_beads.jpg" alt="Surface Mount Beads" class="object-contain py-4">
-            <div class="bg-gray-200 flex items-center justify-between p-4">
-                <div class="font-bold text-center">Surface Mount Beads</div>
-                <div>
-                    <a href="https://www.fair-rite.com/"
-                        class="bg-blue-500 font-semibold text-white px-8 py-2 rounded-lg">More</a>
+<body class="nopad">
+    <div id="app">
+        <div class="tabs">
+            <div class="tab" :class="(slide.name === selectedTab) ? 'selected' : ''" v-for="slide in slides" @click="selectTab(slide.name)">
+                {{slide.name}}
+            </div>
+        </div>
+        <div class="detail-map-container" v-for="slide in slides" v-if="selectedTab === slide.name">
+            <section v-for="marker in slide.markers">
+                <div class="line" :style="{ marginTop: marker.top, marginLeft: marker.left, height: marker.lineHeight }"
+                    v-if="(selectedMarker !== marker.title) ? '' : 'hidden'">
                 </div>
-            </div>
-        </div>
-        <!-- End content for Surface Mount Beads -->
-        <!-- Start content for Split Supression Cores -->
-        <div id="split_supression_cores" class="w-40">
-            <img src="images/split_supression_cores.jpg" alt="Split Supression Cores" class="object-contain py-4">
-            <div class="bg-gray-200 flex items-center justify-between p-4">
-                <div class="font-bold text-center">Split Supression Cores</div>
-                <div>
-                    <a href="https://www.fair-rite.com/"
-                        class="bg-blue-500 font-semibold text-white px-8 py-2 rounded-lg">More</a>
+                <div class="blue-circle" :style="{ marginTop: marker.top, marginLeft: marker.left }"></div>
+                <div class="blue-circle puff-out-center" :style="{ marginTop: marker.top, marginLeft: marker.left }"
+                    @click="toggleMarker(marker.title)">
                 </div>
-            </div>
+            </section>
+            <img :src="slide.img" alt="slide.alt" @click="removeSelection()">
         </div>
-        <!-- End content for Split Supression Cores -->
-        <!-- Start content for Wound Rods -->
-        <div id="wound_rods" class="w-40">
-            <img src="images/wound_rods.jpg" alt="Wound Rods" class="object-contain py-4">
-            <div class="bg-gray-200 flex items-center justify-between p-4">
-                <div class="font-bold text-center">Wound Rods</div>
-                <div>
-                    <a href="https://www.fair-rite.com/"
-                        class="bg-blue-500 font-semibold text-white px-8 py-2 rounded-lg">More</a>
+        <section v-for="slide in slides">
+            <section v-for="marker in slide.markers">
+                <div class="details" v-if="(selectedMarker !== marker.title) ? '' : 'hidden'">
+                    <img :src="marker.img" :alt="marker.title">
+                    <div class="box">
+                        <div class="">{{marker.title}}</div>
+                        <div class=""><a :href="marker.url" class="btn">More</a></div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <!-- End content for Wound Rods -->
-        <!-- Start content for Connector Plates -->
-        <div id="connector_plates" class="w-40">
-            <img src="images/connector_plates.jpg" alt="Connector Plates" class="object-contain py-4">
-            <div class="bg-gray-200 flex items-center justify-between p-4">
-                <div class="font-bold text-center">Connector Plates</div>
-                <div>
-                    <a href="https://www.fair-rite.com/"
-                        class="bg-blue-500 font-semibold text-white px-8 py-2 rounded-lg">More</a>
-                </div>
-            </div>
-        </div>
-        <!-- End content for Connector Plates Cores -->
-        <!-- Start content for Large Planar Cores -->
-        <div id="large_planar_cores" class="w-40">
-            <img src="images/large_planar_cores.jpg" alt="Large Planar Cores" class="object-contain py-4">
-            <div class="bg-gray-200 flex items-center justify-between p-4">
-                <div class="font-bold text-center">Large Planar Cores</div>
-                <div>
-                    <a href="https://www.fair-rite.com/"
-                        class="bg-blue-500 font-semibold text-white px-8 py-2 rounded-lg">More</a>
-                </div>
-            </div>
-        </div>
-        <!-- End content for Large Planar Cores -->
-    </div>
-    <div class="flex w-full h-full justify-center items-center relative">
-        <div>
-            <!-- Surface Mount Pointer -->
-            <div class="blue-circle surface_mount_beads-pointer"></div>
-            <div data-template="surface_mount_beads" class="blue-circle puff-out-center surface_mount_beads-pointer">
-            </div>
-            <!-- End of Surface Mount Pointer -->
-            <!-- Split Supression Cores Pointer -->
-            <div class="blue-circle split_supression_cores-pointer"></div>
-            <div data-template="split_supression_cores"
-                class="blue-circle puff-out-center split_supression_cores-pointer">
-            </div>
-            <!-- End of Split Supression Cores Pointer -->
-            <!-- Split Wound Rods Pointer -->
-            <div class="blue-circle wound_rods-pointer"></div>
-            <div data-template="wound_rods" class="blue-circle puff-out-center wound_rods-pointer">
-            </div>
-            <!-- End of Wound Rods Pointer -->
-            <!-- Connector Plates Pointer -->
-            <div class="blue-circle connector_plates-pointer"></div>
-            <div data-template="connector_plates" class="blue-circle puff-out-center connector_plates-pointer">
-            </div>
-            <!-- End of Connector Plates Pointer -->
-            <!-- Connector Large Planar Cores -->
-            <div class="blue-circle large_planar_cores-pointer"></div>
-            <div data-template="large_planar_cores" class="blue-circle puff-out-center large_planar_cores-pointer">
-            </div>
-            <!-- End of Connector Large Planar Cores -->
-            <img src="images/car.jpg" alt="Car">
-        </div>
+            </section>
+        </section>
     </div>
     <style>
+        .nopad {
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .tabs .tab {
+            color: #666;
+            text-transform: uppercase;
+            text-align: center;
+            padding: 1rem .25rem;
+            cursor: pointer;
+        }
+
+        .tabs .tab.selected {
+            color: rgba(49, 130, 206);
+            font-weight: 800;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .detail-map-container {
+            display: flex;
+            position: relative;
+            flex-direction: column;
+        }
+
+        .detail-map-container img {
+            max-width: 100vw;
+        }
+
+        .line {
+            position: absolute;
+            left: .45rem;
+            bottom: 0;
+            border-left: solid 2px #999;
+        }
+
+        .line::before {
+            display: block;
+            position: absolute;
+            content: '▲';
+            color: #999;
+            top: 0;
+            transform: translateX(-8.75px) translateY(-7px);
+        }
+
+        .details {
+            position: absolute;
+            background: white;
+            width: calc(100% - 2rem);
+            border-radius: 10px;
+            border: solid 1px #999;
+            margin: 0 1rem;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .details img {
+            max-width: 99%;
+            margin: 1rem auto;
+        }
+
+        .details .box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: rgba(237, 242, 247);
+            padding: 1rem;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            font-weight: 800;
+        }
+
+        .details .box .btn {
+            color: #fff;
+            background-color: rgba(49, 130, 206);
+            padding: .5rem 1.25rem;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
         .blue-circle {
             width: 1rem;
             height: 1rem;
@@ -112,41 +139,8 @@
             background-color: rgba(49, 130, 206);
         }
 
-        .surface_mount_beads-pointer {
-            margin-top: calc(17% * 2);
-            margin-left: calc(17% * 2);
-        }
-
-        .split_supression_cores-pointer {
-            margin-top: calc(20% * 2);
-            margin-left: calc(43.3% * 2);
-        }
-
-        .wound_rods-pointer {
-            margin-top: calc(17.5% * 2);
-            margin-left: calc(7.5% * 2);
-        }
-
-        .connector_plates-pointer {
-            margin-top: calc(19.5% * 2);
-            margin-left: calc(22.5% * 2);
-        }
-
-        .large_planar_cores-pointer {
-            margin-top: calc(29.2% * 2);
-            margin-left: calc(37% * 2);
-        }
-
         .puff-out-center {
             animation: puff-out-center 1s cubic-bezier(.165, .84, .44, 1.000) infinite both
-        }
-
-        .tippy-content {
-            padding: 0 !important;
-        }
-
-        .tippy-box>.tippy-arrow::before {
-            transform: scale(1);
         }
 
         @keyframes puff-out-center {
@@ -163,33 +157,164 @@
             }
         }
 
-        @media all and (max-width: 767px) {
-            [data-tippy-root] {
-                transform: translateY(105%) translateX(15px) !important;
-            }
-
-            .tippy-box {
-                max-width: calc(100% - 20px) !important;
-            }
-        }
+        @media all and (max-width: 767px) {}
     </style>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/themes/light-border.css" />
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/svg-arrow.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
     <script>
-        tippy('[data-template]', {
-            content(reference) {
-                const id = reference.getAttribute('data-template');
-                const template = document.getElementById(id);
-                return template.innerHTML;
+        var app = new Vue({
+            el: '#app',
+            data: function () {
+                return {
+                    selectedTab: 'Automotive',
+                    selectedMarker: null,
+                    slides: [
+                        {
+                            name: 'Automotive',
+                            img: 'images/car.jpg',
+                            alt: 'Automotive',
+                            markers: [
+                                {
+                                    title: 'Surface Mount Beads',
+                                    img: 'images/surface_mount_beads.jpg',
+                                    top: '34%',
+                                    left: '34%',
+                                    lineHeight: '44.75%',
+                                    url: 'http://yahoo.com'
+                                },
+                                {
+                                    title: 'Split Supression Cores',
+                                    img: 'images/split_supression_cores.jpg',
+                                    top: '40%',
+                                    left: '86.6%',
+                                    lineHeight: '36%',
+                                    url: 'http://bing.com'
+                                }, {
+                                    title: 'Wound Rods',
+                                    img: 'images/wound_rods.jpg',
+                                    top: '35%',
+                                    left: '15%',
+                                    lineHeight: '43%',
+                                    url: 'http://google.com'
+                                }, {
+                                    title: 'Connector Plates',
+                                    img: 'images/connector_plates.jpg',
+                                    top: '39%',
+                                    left: '45%',
+                                    lineHeight: '37%',
+                                    url: 'http://altavista.com'
+                                }, {
+                                    title: 'Large Planar Cores',
+                                    img: 'images/large_planar_cores.jpg',
+                                    top: '58.4%',
+                                    left: '74%',
+                                    lineHeight: '10%',
+                                    url: 'http://aol.com'
+                                },
+                            ]
+                        },
+                        {
+                            name: 'Medical',
+                            img: 'https://eu.medical.canon/wp-content/uploads/sites/2/2016/02/Canon-Infinix-4D-CT.png',
+                            alt: 'Medical',
+                            markers: [
+                                {
+                                    title: 'Surface Mount Beads',
+                                    img: 'images/surface_mount_beads.jpg',
+                                    top: '34%',
+                                    left: '34%',
+                                    lineHeight: '44.75%',
+                                    url: 'http://yahoo.com'
+                                },
+                                {
+                                    title: 'Split Supression Cores',
+                                    img: 'images/split_supression_cores.jpg',
+                                    top: '40%',
+                                    left: '86.6%',
+                                    lineHeight: '36%',
+                                    url: 'http://bing.com'
+                                }, {
+                                    title: 'Wound Rods',
+                                    img: 'images/wound_rods.jpg',
+                                    top: '35%',
+                                    left: '15%',
+                                    lineHeight: '43%',
+                                    url: 'http://google.com'
+                                }, {
+                                    title: 'Connector Plates',
+                                    img: 'images/connector_plates.jpg',
+                                    top: '39%',
+                                    left: '45%',
+                                    lineHeight: '37%',
+                                    url: 'http://altavista.com'
+                                }, {
+                                    title: 'Large Planar Cores',
+                                    img: 'images/large_planar_cores.jpg',
+                                    top: '58.4%',
+                                    left: '74%',
+                                    lineHeight: '10%',
+                                    url: 'http://aol.com'
+                                },
+                            ]
+                        },
+                        {
+                            name: 'Other',
+                            img: 'https://www.californiahvip.org/wp-content/uploads/2020/05/MY20-Lightning-Systems-FE4-E450-ZE-200430.png',
+                            alt: 'Other',
+                            markers: [
+                                {
+                                    title: 'Surface Mount Beads',
+                                    img: 'images/surface_mount_beads.jpg',
+                                    top: '34%',
+                                    left: '34%',
+                                    lineHeight: '44.75%',
+                                    url: 'http://yahoo.com'
+                                },
+                                {
+                                    title: 'Split Supression Cores',
+                                    img: 'images/split_supression_cores.jpg',
+                                    top: '40%',
+                                    left: '86.6%',
+                                    lineHeight: '36%',
+                                    url: 'http://bing.com'
+                                }, {
+                                    title: 'Wound Rods',
+                                    img: 'images/wound_rods.jpg',
+                                    top: '35%',
+                                    left: '15%',
+                                    lineHeight: '43%',
+                                    url: 'http://google.com'
+                                }, {
+                                    title: 'Connector Plates',
+                                    img: 'images/connector_plates.jpg',
+                                    top: '39%',
+                                    left: '45%',
+                                    lineHeight: '37%',
+                                    url: 'http://altavista.com'
+                                }, {
+                                    title: 'Large Planar Cores',
+                                    img: 'images/large_planar_cores.jpg',
+                                    top: '58.4%',
+                                    left: '74%',
+                                    lineHeight: '10%',
+                                    url: 'http://aol.com'
+                                },
+                            ]
+                        }
+                    ]
+                }
             },
-            allowHTML: true,
-            theme: 'light-border',
-            //animation: 'scale-extreme',
-            trigger: 'click',
-            interactive: true
-        });
+            methods: {
+                selectTab(title) {
+                    this.selectedTab = title
+                },
+                toggleMarker(title) {
+                    this.selectedMarker = title
+                },
+                removeSelection() {
+                    this.selectedMarker = null
+                }
+            }
+        })
     </script>
 </body>
 
