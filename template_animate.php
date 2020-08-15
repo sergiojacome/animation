@@ -58,6 +58,7 @@ while ( have_posts() ) : the_post();
         </div>
         <div class="detail-map-container" v-for="slide in slides" v-if="selectedTab === slide.name">
             <section v-for="marker in slide.markers">
+                <div class="tag" style="transform:translateY(-110%) translateX(-33%)" :style="{ marginTop: marker.top, marginLeft: marker.left }">{{marker.tag}}</div>
                 <div class="blue-circle" :style="{ marginTop: marker.top, marginLeft: marker.left }"></div>
                 <div class="blue-circle puff-out-center" :style="{ marginTop: marker.top, marginLeft: marker.left }" :content="`
                 <div class='img-container'>
@@ -116,11 +117,22 @@ while ( have_posts() ) : the_post();
             display: flex;
             position: relative;
             flex-direction: column;
+            margin: 5rem auto;
         }
 
         .detail-map-container img {
             max-width: 100%;
             object-fit: contain;
+        }
+
+        .tag {
+            position: absolute;
+            display: flex;
+            border-radius: 5px;
+            background-color: rgba(49, 130, 206);
+            color: #fff;
+            padding: .25rem .5rem;
+            font-size:.75rem;
         }
 
         .blue-circle {
@@ -194,7 +206,7 @@ while ( have_posts() ) : the_post();
         }
         @media all and (max-width: 767px) {
             .tippy-popper {
-                transform: translateY(600px) translateX(15px) !important;
+                transform: translateY(550px) translateX(15px) !important;
             }
 
             .tippy-tooltip {
@@ -215,14 +227,15 @@ while ( have_posts() ) : the_post();
                     slides: [
                         {
                             name: 'Automotive',
-                            img: '<?php echo get_template_directory_uri(); ?>/images/details/car.jpg',
+                            img: '<?php echo get_template_directory_uri(); ?>/images/details/car2.jpg',
                             alt: 'Automotive',
                             markers: [
                                 {
                                     title: 'Surface Mount Beads',
                                     id: 'surface_mount_beads',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/surface_mount_beads.jpg',
-                                    top: '34%',
+                                    tag: 'Mirror',
+                                    top: '17%',
                                     left: '34%',
                                     url: '/'
                                 },
@@ -230,28 +243,32 @@ while ( have_posts() ) : the_post();
                                     title: 'Split Supression Cores',
                                     id: 'split_supression_cores',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/split_supression_cores.jpg',
-                                    top: '40%',
+                                    tag: 'Charger',
+                                    top: '23%',
                                     left: '86.6%',
                                     url: '/'
                                 }, {
                                     title: 'Wound Rods',
                                     id: 'wound_rods',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/wound_rods.jpg',
-                                    top: '35%',
+                                    tag: 'Door',
+                                    top: '18%',
                                     left: '15%',
                                     url: '/'
                                 }, {
                                     title: 'Connector Plates',
                                     id: 'connector_plates',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/connector_plates.jpg',
-                                    top: '39%',
+                                    tag: 'Lights',
+                                    top: '22%',
                                     left: '45%',
                                     url: '/'
                                 }, {
                                     title: 'Large Planar Cores',
                                     id: 'large_planar_cores',
                                     img: '<?php echo get_template_directory_uri(); ?>/images/details/large_planar_cores.jpg',
-                                    top: '58.4%',
+                                    tag:'Cable',
+                                    top: '41.4%',
                                     left: '74%',
                                     url: '/'
                                 },
@@ -259,7 +276,7 @@ while ( have_posts() ) : the_post();
                         },
                         {
                             name: 'Medical',
-                            img: 'https://eu.medical.canon/wp-content/uploads/sites/2/2016/02/Canon-Infinix-4D-CT.png',
+                            img: '<?php echo get_template_directory_uri(); ?>/images/details/car2.jpg',
                             alt: 'Medical',
                             markers: [
                                 {
@@ -273,7 +290,7 @@ while ( have_posts() ) : the_post();
                         },
                         {
                             name: 'Agricultural',
-                            img: 'https://www.tennesseetractor.com/images/default-source/default-album/1023e_tractor.png',
+                            img: '<?php echo get_template_directory_uri(); ?>/images/details/car2.jpg',
                             alt: 'Agricultural',
                             markers: [
                                 {
